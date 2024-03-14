@@ -140,10 +140,6 @@
 						<img src="assets/process.png">
 					</section>
 					<section>
-						<h3>Use logger middleware for yours apps</h3>
-						<img src="assets/console.png">
-					</section>
-					<section>
 						<h3>Use linters</h3>
 						A linter will help avoid errors, and things that could not be errors (but look like them) or could be potentially dangerous.
 						<img src="assets/linter.png">
@@ -153,8 +149,12 @@
 						These are the foundations of a well-designed CI.
 					</section>
 					<section>
-						<h3>Dependencies should have fixed versions, use `~` instead of `^`</h3>
-						And don't forget to always commit at least one of yarn.lock or package-lock.json depending on which package manager you're using.
+						<h3>Use package managers</h3>
+						<ul>
+							<li>Dependencies should have fixed versions</li>
+							<li>Include package manager files e.g go.mod, go.sum, package.json, package-lock.json</li>
+						</ul>
+						
 					</section>
 					<section>
 						<h3>Use dockerfile</h3>
@@ -164,70 +164,42 @@
 						<h3>Create a foundations for integration tests</h3>
 						<ul>
 							<li>Prepare docker-compose.yml file</li>
-							<li>Make use of ORM's libraries like 'sequelize'</li>
+							<li>Make use of ORM or Query Builder</li>
+							<li>Keep configuration seperate</li>
 						</ul>
 					</section>
 				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### CI/CD Tools
+						- Github Actions
+						- Concourse CI
+						- Gitlab CI
+						- Circle CI
+						- Travis CI
+						- goCD
+						- Jenkins
+					</textarea>
+				</section>
 				<section>
-					<section>
-						<h3>Jenkinsfile</h3>
-						<img src="assets/jenkins-logo.jpg">
+					<section data-markdown>
+						<textarea data-template>
+							### GitOps
+							- GitOps is a way of implementing Continuous Deployment for cloud native applications
+						</textarea>
 					</section>
-					<section>
-						<h3>Uses groovy syntax</h3>
-						<pre>
-							<code class="hljs" data-line-numbers="3-6">
-def hashPath(packVer, length = 16) {
-    hash = sh(
-        script: "date | shasum -a 256 | awk \'{print substr(\$0,0,${length})}\'",
-        returnStdout: true
-    ).trim()
-    ver = sh(
-        script: "echo ${packVer} | tr -d '.'",
-        returnStdout: true
-    ).trim()
-    return "${ver}${hash}"
-}
-
-							</code>
-						</pre>
+					<section data-markdown>
+						<textarea data-template>
+							### GitOps Tools
+							- FluxCD
+							- ArgoCD
+						</textarea>
 					</section>
-					<section>
-						<h3>Let you integrate with 3rd party software</h3>
-						<pre>
-							<code class="hljs" data-line-numbers="4-8">
-post {
-    success {
-	slackSend(
-	  channel: "$slackChannel",
-	  color: 'good',
-	  message: "App successfully deployed - *(${env.BUILD_NUMBER}) ${env.JOB_NAME}* (<${env.BUILD_URL}|Open>)"
-	)
-    }
-}
-
-							</code>
-						</pre>
-					</section>
-					<section>
-						<h3>Easy integration with docker</h3>
-						<pre>
-							<code class="hljs" data-line-numbers="1-8">
-  agent {
-    docker {
-      image 'node:10.15'
-      args '-u root:root'
-      reuseNode true
-    }
-  }
-
-							</code>
-						</pre>
-					</section>
+						
 				</section>
 				<section>
 					<h3>Thank you</h3>
-					You can find this presentation at https://github.com/tetrash/CI-CD-presentation
+					You can find this presentation at https://github.com/munir131/ci-cd-slides
 				</section>
 			</div>
 		</div>
